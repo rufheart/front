@@ -10,6 +10,7 @@ input.addEventListener("keypress", function(event) {
   }
 });
 
+
 function add(){
     
     let para1 = document.createElement("i");
@@ -108,12 +109,15 @@ function myAdd(p){
     let data1 = p.parentElement.parentElement.parentElement.parentElement
     let selc_div = p.parentElement.parentElement.parentElement
     let count1 = 0
-    let mybut = document.createElement('button');
+    let mybut = document.createElement('input');
+    mybut.type='button'
     mybut.setAttribute('class','child42');
-    mybut.setAttribute('value','edit');
     mybut.setAttribute('onclick','myEdit(this)');
+    mybut.setAttribute('id','myBtn2')
+    mybut.setAttribute('value','Edit');
     let myinpt = document.createElement('input');
     myinpt.setAttribute('class','child41');
+    myinpt.setAttribute('id','myInput2')
     myinpt.value =  p.parentElement.parentElement.parentElement.children[0].innerHTML
     let mydiv = document.createElement('div');
     mydiv.setAttribute('class','child4');
@@ -137,6 +141,15 @@ function myAdd(p){
     // console.log(child2)
 
 }
+
+let input2 = document.getElementById("myInput2");
+input2.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    document.getElementById("myBtn2").click();
+  }
+  myEdit()
+});
 
 function myEdit(p){
     let say =0
