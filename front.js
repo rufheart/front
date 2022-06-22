@@ -1,6 +1,15 @@
 let data = document.getElementsByClassName('ipt1')[0];
 let parent4 = document.getElementById('data1')
 let liste =[]
+
+let input = document.getElementById("myInput");
+input.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    document.getElementById("myBtn").click();
+  }
+});
+
 function add(){
     
     let para1 = document.createElement("i");
@@ -59,6 +68,8 @@ function add(){
 
 }
 
+
+
 function myRemove(p){
     let esas = p.parentElement.parentElement.parentElement.children[0].innerHTML
     if(liste.includes(esas)){
@@ -66,7 +77,11 @@ function myRemove(p){
         liste.splice(esas, 1)
         // console.log(liste)
     }
+    if(p.parentElement.parentElement.parentElement.parentElement.parentElement.children[4]){
+        p.parentElement.parentElement.parentElement.parentElement.parentElement.children[4].remove()
+    }
     p.parentElement.parentElement.parentElement.remove()
+    
     
 }
 
@@ -75,14 +90,17 @@ function yeni(){
 }
 
 function delete_all(p){ 
-
     let i = 0
     let b=0
     liste =[]
+    let child4 = p.parentElement.parentElement.children[4]
+    if(child4){
+        child4.remove()
+    }
     while(i<parent4.children.length){
         parent4.children[b].remove()
     }
-    
+ 
 }
 
 function myAdd(p){
@@ -121,18 +139,22 @@ function myAdd(p){
 }
 
 function myEdit(p){
+    let say =0
     let count = 0
     let olc=p.parentElement.children[0].value 
+    liste.push(olc)
     let new2 = p.parentElement.parentElement.children[2].children 
     for(i in new2){
         if(new2[i].id == 'div1'){
+            let index = liste.indexOf(new2[i].children[0].innerHTML)
+            liste.splice(index,1)
             new2[i].children[0].innerHTML = olc
-
+            
         }  
         new2[i].id = '' 
     }
-
-    console.log(count)
+    
+    p.parentElement.remove()
 }   
 
 
